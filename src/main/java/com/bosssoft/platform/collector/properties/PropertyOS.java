@@ -4,7 +4,7 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.bosssoft.platform.license.api.Constant;
+import com.bosssoft.platform.collector.Constants;
 
 
 
@@ -17,7 +17,7 @@ public class PropertyOS implements ServerProperty{
 	
 	public String propertyName() {
 		
-		return "os";
+		return Constants.PROPERTY_NAME_OS;
 	}
 
 	public String propertyValue() {

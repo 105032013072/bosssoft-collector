@@ -13,10 +13,15 @@ import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSON;
 import com.bosssoft.platform.collector.properties.PropertyCpu;
+import com.bosssoft.platform.collector.properties.PropertyDB;
+import com.bosssoft.platform.collector.properties.PropertyEdition;
 import com.bosssoft.platform.collector.properties.PropertyIP;
 import com.bosssoft.platform.collector.properties.PropertyMAC;
 import com.bosssoft.platform.collector.properties.PropertyOS;
+import com.bosssoft.platform.collector.properties.PropertyRegion;
+import com.bosssoft.platform.collector.properties.PropertyServer;
 import com.bosssoft.platform.collector.properties.ServerProperty;
+import com.bosssoft.platform.collector.util.CollectorUtils;
 import com.bosssoft.platform.license.impl.LicenseUtil;
 
 public class CollectLauncher {
@@ -27,20 +32,31 @@ public class CollectLauncher {
 	
 	private static Map<String,Object> serverPropertyValues=new HashMap<String, Object>();
 	
+	private static CollectorProperties collectorProperties=new CollectorProperties();
+	
 	public static void main(String[] args) {
+	    collectorProperties.loadProperties();
 		log.info("is collecting server information........");
 		initServerProperties();
 		
 		boolean collectResult=collectServerPropertyValues();
 		
 		if(collectResult){
+		  String editionValue= (String)serverPropertyValues.get(Constants.PROPERTY_NAME_EDITION);
+		  if(Boolean.TRUE.toString().equals(editionValue)){
+		      //试用版,设置过期时间 
+		      String expiration=CollectorUtils.getAfterMonth(CollectorUtils.getCurrentTimeStr(), collectorProperties.getTrialTime());
+		      serverPropertyValues.put(Constants.PROPERTY_NAME_EXPIR, expiration);
+		  }
+		    
+		    
 		  File file=	createServerPropertyFile();
 		  log.info("bosssoft-collector execution success and create server-info file on "+file.getPath());
 		}
 		
 
 	}
-	
+
 	private static File createServerPropertyFile() {
 		String filePath=getCurrentDirectory()+File.separator+"bosssoft-serverinfo.xml";
 		File file=new File(filePath);
@@ -91,6 +107,11 @@ public class CollectLauncher {
 		serverProperties.add(new PropertyIP());
 		serverProperties.add(new PropertyMAC());
 		serverProperties.add(new PropertyOS());
+		
+		serverProperties.add(new PropertyEdition());
+		serverProperties.add(new PropertyDB());
+		serverProperties.add(new PropertyServer());
+		serverProperties.add(new PropertyRegion());
 		
 	}
 

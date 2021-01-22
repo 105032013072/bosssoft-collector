@@ -11,8 +11,8 @@
   <url>http://maven.apache.org</url>
 
   <properties>
-    <java.src.version>1.6</java.src.version>
-    <java.target.version>1.6</java.target.version>
+    <java.src.version>1.8</java.src.version>
+    <java.target.version>1.8</java.target.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <log4j.version>1.2.17</log4j.version>
     <slf4j.version>1.7.21</slf4j.version>
@@ -23,7 +23,7 @@
 	<dependency>
 		<groupId>junit</groupId>
 		<artifactId>junit</artifactId>
-		<version>3.8.1</version>
+		<version>4.12</version>
 		<scope>test</scope>
 	</dependency>
 	

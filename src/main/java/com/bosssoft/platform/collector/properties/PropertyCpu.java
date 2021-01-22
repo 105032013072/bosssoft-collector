@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.bosssoft.platform.collector.Constants;
 import com.bosssoft.platform.license.api.Constant;
 
 
@@ -19,7 +20,7 @@ public class PropertyCpu implements ServerProperty{
 	
 	public String propertyName() {
 		
-		return "cpus";
+		return Constants.PROPERTY_NAME_CPU;
 	}
 
 	public String propertyValue() {

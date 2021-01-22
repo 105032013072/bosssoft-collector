@@ -11,6 +11,8 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.bosssoft.platform.collector.Constants;
+
 public class PropertyMAC implements ServerProperty {
 
 	private static Logger log = LoggerFactory.getLogger(PropertyMAC.class);
@@ -19,7 +21,7 @@ public class PropertyMAC implements ServerProperty {
 
 	public String propertyName() {
 
-		return "mac";
+		return Constants.PROPERTY_NAME_MAC;
 	}
 
 	public String propertyValue() {
@@ -57,7 +59,7 @@ public class PropertyMAC implements ServerProperty {
 			errorMessage = "get mac info fail";
 			log.error("get mac info fail " + e.toString());
 		}
-
+        System.out.println("mac:"+hostMac);
 		return hostMac;
 	}
 

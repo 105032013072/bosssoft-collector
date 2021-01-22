@@ -1,38 +1,18 @@
 package com.bosssoft.platform.collector;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.Test;
+
+import com.bosssoft.platform.license.impl.LicenseUtil;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
-
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
-
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+public class AppTest {
+    
+    @Test 
+    public void test(){
+        
+        String str="gs7Ja4Q7FhVmSOZqIAhAXOW65vOtGeiZX2Cl6psfpzwBU6L0YUavMOcCGvI1aPzavyfVY3GNaWJJc5W2fSrntCXRuddEbgb7ePNepFvPR5cfcgrw+W20ete8SfCA1NJoDQz1/KfONZnxeomLHjTnuyfYSRtn+Kdw8hvH9T6FXdu8uD8d0zkjAD5BLCR5KdkHsxFWoIkJg8vXq9WVzseuWKjAedpxLFaqJSjM0vRdZ0+Cr59q+dHJK8o=";
+       System.out.println(LicenseUtil.decrypt(str)); 
     }
 }
